@@ -622,51 +622,66 @@ DISEASE_INFO = {
         'color':'#f6e05e'
     },
 }
+# ── Team Photos (base64 encoded) ─────────────────────
+import base64
+from pathlib import Path
 
+def get_photo_base64(filename):
+    """Load photo and convert to base64"""
+    paths = [
+        filename,
+        f'./{filename}',
+        f'/mount/src/dentaldetection-oraldx/{filename}',
+    ]
+    for path in paths:
+        if Path(path).exists():
+            with open(path, 'rb') as f:
+                data = f.read()
+            return base64.b64encode(data).decode()
+    return None
+
+PHOTOS = {
+    'sonali'   : get_photo_base64('sonali.jpeg'),
+    'jagruti'  : get_photo_base64('jagruti.jpeg'),
+    'dharitri' : get_photo_base64('dharitri.jpeg'),
+    'smitarani': get_photo_base64('smitarani.jpeg'),
+    'barsha'   : get_photo_base64('barsha.jpeg'),
+    'guide'    : get_photo_base64('guide.jpeg'),
+}
 TEAM_MEMBERS = [
     {
         'name'   : 'Sonali Patra',
         'reg'    : '24C216A45',
-        'role'   : 'Team Lead & ML Engineer',
-        'emoji'  : '👩‍💻',
+        'emoji'  : 'photo',
         'gmail'  : 'sonalipatra2004@gmail.com',
-        'contrib': 'Model training, Streamlit app development',
         'photo'  : 'sonali.jpeg'
     },
     {
         'name'   : 'Jagruti Parida',
         'reg'    : '24C216A47',
-        'role'   : 'Data Engineer',
-        'emoji'  : '👩‍🔬',
+        'emoji'  : 'photo',
         'gmail'  : 'paridaj320@gmail.com',
-        'contrib': 'Dataset collection and preprocessing',
         'photo'  : 'jagruti.jpeg'
     },
     {
         'name'   : 'Dharitri Pradhan',
         'reg'    : '24C216A30',
-        'role'   : 'Deep Learning Researcher',
-        'emoji'  : '👩‍💡',
+        'emoji'  : 'photo',
         'gmail'  : 'pradhandharitri319@gmail.com',
-        'contrib': 'CNN architecture design and evaluation',
         'photo'  : 'dharitri.jpeg'
     },
     {
         'name'   : 'Smitarani Mohapatra',
         'reg'    : '24C213A05',
-        'role'   : 'Frontend Developer',
-        'emoji'  : '👩‍🎨',
+        'emoji'  : 'photo',
         'gmail'  : 'smitaranimahapatra993@gmail.com',
-        'contrib': 'UI/UX design and documentation',
         'photo'  : 'smitarani.jpeg'
     },
     {
         'name'   : 'Barsha Priyadarshini Singh',
         'reg'    : '24C219A30',
-        'role'   : 'Backend Developer',
-        'emoji'  : '👩‍🏫',
+        'emoji'  : 'photo',
         'gmail'  : 'barshasingh971@gmail.com',
-        'contrib': 'Model deployment and testing',
         'photo'  : 'barsha.jpeg'
     },
 ]
@@ -676,7 +691,7 @@ GUIDE = {
     'designation': 'Associate Professor',
     'dept'       : 'Department of Computer Application',
     'university' : 'ITER, SOA University, Bhubaneswar',
-    'emoji'      : '👨‍🏫'
+    'emoji'      : 'photo'
 }
 
 # ══════════════════════════════════════════════════════
